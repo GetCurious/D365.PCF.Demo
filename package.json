@@ -1,0 +1,21 @@
+{
+  "name": "pcf-components",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "lint": "pnpm -r lint",
+    "lint:fix": "pnpm -r lint:fix",
+    "clean": "pnpm -r clean",
+    "rebuild": "pnpm -r rebuild",
+    "refreshTypes": "pnpm -r refreshTypes",
+    "dev": "pnpm -r start:watch",
+    "build": "pnpm -r build",
+    "build:solution": "pnpm exec dotnet msbuild solution /t:build /restore /p:configuration=release",
+    "dev:vip-control": "pnpm --filter vip-control run start:watch",
+    "dev:opty-revenue-rollup": "pnpm --filter opty-revenue-rollup run start:watch",
+    "dev:case-counter-rollup": "pnpm --filter case-counter-rollup run start:watch"
+  },
+  "devDependencies": {
+    "husky": "^9.0.11"
+  }
+}
