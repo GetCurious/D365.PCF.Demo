@@ -5,6 +5,7 @@
 
 # output directory
 **/out
+**/generated
 
 # msbuild output directories
 **/bin

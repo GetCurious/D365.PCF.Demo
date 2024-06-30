@@ -3,13 +3,11 @@ import {
     FluentProvider,
     webLightTheme,
     PartialTheme,
-    Button,
-    Text,
+    CompoundButton,
     tokens,
 } from "@fluentui/react-components";
 import {PeopleStarRegular, PeopleTeamRegular} from "@fluentui/react-icons";
-import {type IInputs} from "./generated/ManifestTypes";
-import {useState} from "react";
+import {type IInputs, IOutputs} from "./generated/ManifestTypes";
 
 // === Dependency Injection =====================================
 export interface Xrm {
@@ -33,6 +31,7 @@ const overrideTheme: PartialTheme = {
 // === Wrapper for setups (theme, context, etc) =================
 export interface IAppProps {
     context: ComponentFramework.Context<IInputs>;
+    rerender: (outputs: IOutputs) => void;
 }
 
 export class App extends React.Component<IAppProps> {
@@ -54,7 +53,7 @@ export class App extends React.Component<IAppProps> {
         return (
             <FluentProvider theme={overrideTheme}>
                 <XrmContext.Provider value={Xrm}>
-                    <VIPComponent {...context.parameters} />
+                    <VIPComponent params={context.parameters} rerender={this.props.rerender} />
                 </XrmContext.Provider>
             </FluentProvider>
         );
@@ -62,14 +61,13 @@ export class App extends React.Component<IAppProps> {
 }
 
 // === Actual Component =========================================
-function VIPComponent(props: IInputs) {
+function VIPComponent(props: { params: IInputs, rerender: (outputs: IOutputs) => void }) {
     const Xrm = React.useContext(XrmContext);
+    const [state, dispatch] = React.useReducer(reducer, {isVIP: props.params.isVIP.raw});
 
     const fontColor = tokens.colorStrokeFocus2; // black
     const primaryColor = tokens.colorBrandForegroundInverted; // rgb(71, 158, 245)
     const lightColor = tokens.colorNeutralBackground2; // rgb(250, 250, 250)
-
-    const [isVIP, setIsVIP] = useState(props.isVIP.raw)
 
     // onMount life-cycle
     React.useEffect(() => {
@@ -78,36 +76,48 @@ function VIPComponent(props: IInputs) {
     }, []);
 
 
+    // trigger update
+    React.useEffect(() => {
+        props.rerender(state);
+    }, [state])
+
+
     return (
         <div style={{display: "flex", gap: "0.3rem"}}>
-            <Button
-                onClick={() => setIsVIP(true)}
-                appearance={isVIP ? "primary" : "outline"}
-                icon={<PeopleStarRegular fontSize={30} color={isVIP ? lightColor : primaryColor} />}
+            <CompoundButton
+                onClick={() => dispatch(Action.IS_VIP)}
+                appearance={state.isVIP ? "primary" : "outline"}
+                icon={<PeopleStarRegular />}
+                secondaryContent={"> 100,000.00 Revenue"}
                 shape="rounded">
-                <Text as="h2">
-                    <Text size={400} weight="bold" style={{color: (isVIP ? lightColor : primaryColor)}}>
-                        VIP
-                    </Text>
-                    <Text size={100} block={true}>
-                        &gt; 100,000.00 Revenue
-                    </Text>
-                </Text>
-            </Button>
-            <Button
-                onClick={() => setIsVIP(false)}
-                appearance={!isVIP ? "primary" : "outline"}
-                icon={<PeopleTeamRegular fontSize={30} color={!isVIP ? lightColor : primaryColor} />}
+                VIP
+            </CompoundButton>
+            <CompoundButton
+                onClick={() => dispatch(Action.IS_NORMAL)}
+                appearance={!state.isVIP ? "primary" : "outline"}
+                icon={<PeopleTeamRegular />}
+                secondaryContent={"< 100,000.00 Revenue"}
                 shape="rounded">
-                <Text as="h2">
-                    <Text size={400} weight="bold" style={{color: (!isVIP ? lightColor : primaryColor)}}>
-                        Normal
-                    </Text>
-                    <Text size={100} block={true} style={{color: (!isVIP ? lightColor : fontColor)}}>
-                        &lt; 100,000.00 Revenue
-                    </Text>
-                </Text>
-            </Button>
+                Normal
+            </CompoundButton>
         </div>
     );
+}
+
+
+// events
+enum Action {
+    IS_NORMAL = 0,
+    IS_VIP = 1,
+}
+
+function reducer(state: IOutputs, action: Action): IOutputs {
+    switch (action) {
+        case Action.IS_VIP:
+            return {...state, isVIP: true};
+        case  Action.IS_NORMAL:
+            return {...state, isVIP: false};
+        default:
+            return state;
+    }
 }

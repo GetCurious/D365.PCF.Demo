@@ -7,7 +7,7 @@
     "lint:fix": "pnpm -r lint:fix",
     "clean": "pnpm -r clean",
     "rebuild": "pnpm -r rebuild",
-    "refreshTypes": "pnpm -r refreshTypes",
+    "refresh": "pnpm -r refreshTypes",
     "dev": "pnpm -r start:watch",
     "build": "pnpm -r build",
     "build:solution": "pnpm exec dotnet msbuild solution /t:build /restore /p:configuration=release",

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest>
-  <control namespace="Pulz" constructor="OpportunityRevenueRollup" version="0.0.1"
+  <control namespace="Pulz" constructor="OpportunityRevenueRollup" version="1.0.9"
     display-name-key="Opportunity Revenue Rollup"
     description-key="Display revenue based on Opportunity status."
     control-type="virtual">
@@ -27,9 +27,9 @@
     <!-- property node identifies a specific, configurable piece of data that the control expects
     from CDS -->
 
-    <data-set name="opportunityDataset" display-name-key="Opportunity Dataset"
-              cds-data-set-options="displayCommandBar:true;displayViewSelector:true;displayQuickFind:true">
-    </data-set>
+    <property name="placeholder" display-name-key="Placeholder"
+              description-key="Placeholder field." of-type="SingleLine.Text" usage="bound" required="true">
+    </property>
     
     <property name="opportunityStatus" display-name-key="Opportunity Status"
       description-key="Opportunity status." of-type="Enum" usage="input" required="true">

@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest>
-  <control namespace="Pulz" constructor="CaseCounterRollup" version="0.0.1"
+  <control namespace="Pulz" constructor="CaseCounterRollup" version="1.0.9"
     display-name-key="Case Counter Rollup"
     description-key="Display count based on Case status and priority code."
     control-type="virtual">
@@ -27,9 +27,9 @@
     <!-- property node identifies a specific, configurable piece of data that the control expects
     from CDS -->
 
-    <data-set name="caseDataset" display-name-key="Case Dataset"
-              cds-data-set-options="displayCommandBar:true;displayViewSelector:true;displayQuickFind:true">
-    </data-set>
+    <property name="placeholder" display-name-key="Placeholder"
+              description-key="Placeholder field." of-type="SingleLine.Text" usage="bound" required="true">
+    </property>
     
     <property name="caseStatus" display-name-key="Case Status" description-key="Case status."
       of-type="Enum" usage="input" required="true">

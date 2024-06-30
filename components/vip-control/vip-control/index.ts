@@ -1,10 +1,11 @@
-import { IInputs, IOutputs } from "./generated/ManifestTypes";
-import { App, IAppProps } from "./App";
+import {IInputs, IOutputs} from "./generated/ManifestTypes";
+import {App, IAppProps} from "./App";
 import * as React from "react";
 
 export class VIPControl implements ComponentFramework.ReactControl<IInputs, IOutputs> {
     private theComponent: ComponentFramework.ReactControl<IInputs, IOutputs>;
     private notifyOutputChanged: () => void;
+    private outputs: IOutputs = {};
 
     /**
      * Empty constructor.
@@ -32,8 +33,16 @@ export class VIPControl implements ComponentFramework.ReactControl<IInputs, IOut
      * @returns ReactElement root react element for the control
      */
     public updateView(context: ComponentFramework.Context<IInputs>): React.ReactElement {
-        const props: IAppProps = { context };
+        const props: IAppProps = {
+            context,
+            rerender: this._rerender.bind(this)
+        };
         return React.createElement(App, props);
+    }
+    
+    private _rerender(outputs: IOutputs) {
+        this.outputs = outputs;
+        this.notifyOutputChanged();
     }
 
     /**
@@ -41,7 +50,7 @@ export class VIPControl implements ComponentFramework.ReactControl<IInputs, IOut
      * @returns an object based on nomenclature defined in manifest, expecting object[s] for property marked as "bound" or "output"
      */
     public getOutputs(): IOutputs {
-        return { };
+        return this.outputs;
     }
 
     /**
