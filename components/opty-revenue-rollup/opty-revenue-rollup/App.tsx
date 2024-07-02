@@ -65,7 +65,7 @@ function OpportunityRevenue(inputs: IInputs) {
     const Xrm = React.useContext(XrmContext);
 
     // const fontColor = tokens.colorStrokeFocus2; // black
-    // const primaryColor = tokens.colorBrandForegroundInverted; // rgb(71, 158, 245)
+    const primaryColor = tokens.colorBrandForegroundInverted; // rgb(71, 158, 245)
     // const lightColor = tokens.colorNeutralBackground2; // rgb(250, 250, 250)
 
     enum OpportunityStatus {
@@ -108,9 +108,11 @@ function OpportunityRevenue(inputs: IInputs) {
             appearance={"outline"}
             secondaryContent={`${OpportunityStatus[opportunityStatus]} Revenue`}
             icon={<MoneyCalculatorRegular />}
-            size="large"
+            size="medium"
             shape="rounded">
-            {totalRevenue}
+            <Text style={{color: primaryColor}} size={400} weight={"bold"}>
+                {totalRevenue.toLocaleString()}
+            </Text>
         </CompoundButton>
     );
 }

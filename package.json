@@ -13,7 +13,9 @@
     "build:solution": "pnpm exec dotnet msbuild solution /t:build /restore /p:configuration=release",
     "dev:vip-control": "pnpm --filter vip-control run start:watch",
     "dev:opty-revenue-rollup": "pnpm --filter opty-revenue-rollup run start:watch",
-    "dev:case-counter-rollup": "pnpm --filter case-counter-rollup run start:watch"
+    "dev:case-counter-rollup": "pnpm --filter case-counter-rollup run start:watch",
+    "dev:case-chart": "pnpm --filter case-chart run start:watch",
+    "dev:opportunity-chart": "pnpm --filter opportunity-chart run start:watch"
   },
   "devDependencies": {
     "husky": "^9.0.11"

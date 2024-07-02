@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest>
-  <control namespace="Pulz" constructor="OpportunityRevenueRollup" version="1.0.9"
+  <control namespace="Pulz" constructor="OpportunityRevenueRollup" version="1.0.10"
     display-name-key="Opportunity Revenue Rollup"
     description-key="Display revenue based on Opportunity status."
     control-type="virtual">

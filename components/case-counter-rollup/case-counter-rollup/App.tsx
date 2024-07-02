@@ -65,7 +65,7 @@ function CaseCounterComponent(props: IInputs) {
     const Xrm = React.useContext(XrmContext);
 
     // const fontColor = tokens.colorStrokeFocus2; // black
-    // const primaryColor = tokens.colorBrandForegroundInverted; // rgb(71, 158, 245)
+    const primaryColor = tokens.colorBrandForegroundInverted; // rgb(71, 158, 245)
     // const lightColor = tokens.colorNeutralBackground2; // rgb(250, 250, 250)
 
     enum CaseStatus {
@@ -119,9 +119,11 @@ function CaseCounterComponent(props: IInputs) {
             appearance={"outline"}
             secondaryContent={`Priority ${CaseStatus[caseStatus]} Cases`}
             icon={<DocumentBriefcaseRegular />}
-            size="large"
+            size="medium"
             shape="rounded">
-            {totalCase} {PriorityCode[priorityCode]}
+            <Text style={{color: primaryColor}} size={400} weight={"bold"}>
+                {totalCase} {PriorityCode[priorityCode]}
+            </Text>
         </CompoundButton>
     );
 }

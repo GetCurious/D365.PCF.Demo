@@ -1,4 +1,4 @@
-import * as React from "react";
+﻿import * as React from "react";
 import {
     FluentProvider,
     webLightTheme,
@@ -7,7 +7,6 @@ import {
     tokens,
     Text,
 } from "@fluentui/react-components";
-import {PeopleStarRegular, PeopleTeamRegular} from "@fluentui/react-icons";
 import {type IInputs, IOutputs} from "./generated/ManifestTypes";
 
 // === Dependency Injection =====================================

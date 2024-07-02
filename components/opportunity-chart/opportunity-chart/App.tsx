@@ -1,14 +1,19 @@
-import * as React from "react";
+﻿import * as React from "react";
 import {
     FluentProvider,
     webLightTheme,
     PartialTheme,
+    type BrandVariants,
+    type Theme,
     CompoundButton,
     tokens,
     Text,
 } from "@fluentui/react-components";
-import {PeopleStarRegular, PeopleTeamRegular} from "@fluentui/react-icons";
+import {createV8Theme} from '@fluentui/react-migration-v8-v9';
+import {ThemeContext_unstable as V9ThemeContext} from '@fluentui/react-shared-contexts';
+import {DonutChart, type IChartProps, type IChartDataPoint} from '@fluentui/react-charting';
 import {type IInputs, IOutputs} from "./generated/ManifestTypes";
+import * as d3Color from 'd3-color';
 
 // === Dependency Injection =====================================
 export interface Xrm {
@@ -64,48 +69,61 @@ export class App extends React.Component<IAppProps> {
 // === Actual Component =========================================
 function VIPComponent(props: { params: IInputs, rerender: (outputs: IOutputs) => void }) {
     const Xrm = React.useContext(XrmContext);
-    const [state, setState] = React.useState<IOutputs>({isVIP: props.params.isVIP.raw});
 
     const fontColor = tokens.colorStrokeFocus2; // black
     const primaryColor = tokens.colorBrandForegroundInverted; // rgb(71, 158, 245)
     const lightColor = tokens.colorNeutralBackground2; // rgb(250, 250, 250)
 
-    // onMount life-cycle
-    React.useEffect(() => {
-        // const result = Xrm.WebApi.retrieveRecord("contact", "55e7eb6f-3029-ef11-840a-000d3ac92c59");
-        // Xrm.Navigation.openConfirmDialog({ text: "Hello" });
-    }, []);
+    let parentV9Theme = React.useContext(V9ThemeContext) as Theme;
+    let v9Theme: Theme = parentV9Theme ? parentV9Theme : webLightTheme;
+    let backgroundColor = d3Color.hsl(v9Theme.colorNeutralBackground1);
+    let foregroundColor = d3Color.hsl(v9Theme.colorNeutralForeground1);
+    const myV8Theme = createV8Theme(brandInvariant, v9Theme, backgroundColor.l < foregroundColor.l); // For dark theme background color is darker than foreground color
 
-
-    // trigger update
-    React.useEffect(() => {
-        props.rerender(state);
-    }, [state])
+    const points: IChartDataPoint[] = [
+        {legend: 'first', data: 20000, color: fontColor, xAxisCalloutData: '2020/04/30'},
+        {
+            legend: 'second',
+            data: 39000,
+            color: primaryColor,
+            xAxisCalloutData: '2020/04/20',
+        },
+    ];
+    const data: IChartProps = {
+        chartTitle: 'Donut chart basic example',
+        chartData: points,
+    };
 
     return (
-        <div style={{display: "flex", gap: "0.3rem"}}>
-            <CompoundButton
-                onClick={() => setState({isVIP: true})}
-                appearance={state.isVIP ? "primary" : "outline"}
-                icon={<PeopleStarRegular color={state.isVIP ? lightColor : fontColor} />}
-                secondaryContent={"> 100,000.00 Revenue"}
-                shape="rounded"
-                size={"small"}>
-                <Text style={{color: state.isVIP ? lightColor : primaryColor}} size={400} weight={"semibold"}>
-                    VIP
-                </Text>
-            </CompoundButton>
-            <CompoundButton
-                onClick={() => setState({isVIP: false})}
-                appearance={!state.isVIP ? "primary" : "outline"}
-                icon={<PeopleTeamRegular color={state.isVIP ? fontColor : lightColor} />}
-                secondaryContent={"< 100,000.00 Revenue"}
-                shape="rounded"
-                size={"small"}>
-                <Text style={{color: !state.isVIP ? lightColor : primaryColor}} size={400} weight={"bold"}>
-                    Normal
-                </Text>
-            </CompoundButton>
-        </div>
+        <DonutChart
+            culture={window.navigator.language}
+            data={data}
+            innerRadius={55}
+            href={'https://developer.microsoft.com/en-us/'}
+            legendsOverflowText={'overflow Items'}
+            hideLegend={false}
+            height={220}
+            width={176}
+            valueInsideDonut={39000}
+        />
     );
 }
+
+const brandInvariant: BrandVariants = {
+    10: '',
+    20: '',
+    30: '',
+    40: '',
+    50: '',
+    60: '',
+    70: '',
+    80: '',
+    90: '',
+    100: '',
+    110: '',
+    120: '',
+    130: '',
+    140: '',
+    150: '',
+    160: '',
+};
