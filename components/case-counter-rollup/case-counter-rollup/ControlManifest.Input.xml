@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest>
-  <control namespace="Pulz" constructor="CaseCounterRollup" version="1.0.10"
+  <control namespace="Pulz" constructor="CaseCounterRollup" version="1.0.0"
     display-name-key="Case Counter Rollup"
     description-key="Display count based on Case status and priority code."
     control-type="virtual">

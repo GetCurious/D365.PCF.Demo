@@ -53,7 +53,7 @@ export class App extends React.Component<IAppProps> {
         return (
             <FluentProvider theme={overrideTheme}>
                 <XrmContext.Provider value={Xrm}>
-                    <CaseCounterComponent {...context.parameters} />
+                    <CaseCounter {...context.parameters} />
                 </XrmContext.Provider>
             </FluentProvider>
         );
@@ -61,7 +61,7 @@ export class App extends React.Component<IAppProps> {
 }
 
 // === Actual Component =========================================
-function CaseCounterComponent(props: IInputs) {
+function CaseCounter(props: IInputs) {
     const Xrm = React.useContext(XrmContext);
 
     // const fontColor = tokens.colorStrokeFocus2; // black

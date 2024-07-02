@@ -15,7 +15,8 @@
   "dependencies": {
     "react": "16.8.6",
     "@fluentui/react-components": "9.46.2",
-    "react-dom": "16.8.6"
+    "react-dom": "16.8.6",
+    "@fluentui/react-migration-v8-v9": "^9.6.19"
   },
   "devDependencies": {
     "@microsoft/eslint-plugin-power-apps": "^0.2.33",

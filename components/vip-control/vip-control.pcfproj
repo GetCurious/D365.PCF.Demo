@@ -11,7 +11,6 @@
     <Name>vip-control</Name>
     <ProjectGuid>31572a18-f1d7-44dc-8200-0e95131e0517</ProjectGuid>
     <OutputPath>$(MSBuildThisFileDirectory)out\controls</OutputPath>
-    <PcfBuildMode>production</PcfBuildMode>
   </PropertyGroup>
 
   <PropertyGroup>

@@ -8,8 +8,8 @@
   <Import Project="$(PowerAppsTargetsPath)\Microsoft.PowerApps.VisualStudio.Pcf.props" Condition="Exists('$(PowerAppsTargetsPath)\Microsoft.PowerApps.VisualStudio.Pcf.props')" />
 
   <PropertyGroup>
-    <Name>case-counter-rollup</Name>
-    <ProjectGuid>bc159b70-8ab5-486e-a89e-a913f1088e02</ProjectGuid>
+    <Name>donut-chart</Name>
+    <ProjectGuid>322e495e-3689-44b1-b8a7-125476f8ef52</ProjectGuid>
     <OutputPath>$(MSBuildThisFileDirectory)out\controls</OutputPath>
   </PropertyGroup>
 

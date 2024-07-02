@@ -8,9 +8,9 @@
       <LocalizedName description="PCF React Control" languagecode="1033" />
     </LocalizedNames>
     <Descriptions />
-    <Version>1.0.10</Version>
+    <Version>0.0.1</Version>
     <!-- Solution Package Type: Unmanaged(0)/Managed(1)/Both(2)-->
-    <Managed>2</Managed>
+    <Managed>0</Managed>
     <Publisher>
       <!-- Unique Publisher Name of Cds Solution -->
       <UniqueName>Pulz</UniqueName>

@@ -1,5 +1,5 @@
 {
-  "name": "case-counter-rollup",
+  "name": "opportunity-chart",
   "version": "1.0.0",
   "description": "Project containing your PowerApps Component Framework (PCF) control.",
   "scripts": {
@@ -35,7 +35,6 @@
     "eslint-plugin-react": "^7.34.1",
     "pcf-scripts": "^1",
     "pcf-start": "^1",
-    "typescript": "^4.9.5",
-    "@fluentui/react-icons": "^2.0.245"
+    "typescript": "^4.9.5"
   }
 }

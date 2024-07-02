@@ -9,6 +9,7 @@ import {
 } from "@fluentui/react-components";
 import {PeopleStarRegular, PeopleTeamRegular} from "@fluentui/react-icons";
 import {type IInputs, IOutputs} from "./generated/ManifestTypes";
+import {StackShim, StackItemShim} from '@fluentui/react-migration-v8-v9';
 
 // === Dependency Injection =====================================
 export interface Xrm {
@@ -54,7 +55,7 @@ export class App extends React.Component<IAppProps> {
         return (
             <FluentProvider theme={overrideTheme}>
                 <XrmContext.Provider value={Xrm}>
-                    <VIPComponent params={context.parameters} rerender={this.props.rerender} />
+                    <VIPComponent params={context.parameters} rerender={this.props.rerender}/>
                 </XrmContext.Provider>
             </FluentProvider>
         );
@@ -83,11 +84,11 @@ function VIPComponent(props: { params: IInputs, rerender: (outputs: IOutputs) =>
     }, [state])
 
     return (
-        <div style={{display: "flex", gap: "0.3rem"}}>
+        <StackShim horizontal={true}>
             <CompoundButton
                 onClick={() => setState({isVIP: true})}
                 appearance={state.isVIP ? "primary" : "outline"}
-                icon={<PeopleStarRegular color={state.isVIP ? lightColor : fontColor} />}
+                icon={<PeopleStarRegular color={state.isVIP ? lightColor : fontColor}/>}
                 secondaryContent={"> 100,000.00 Revenue"}
                 shape="rounded"
                 size={"small"}>
@@ -98,7 +99,7 @@ function VIPComponent(props: { params: IInputs, rerender: (outputs: IOutputs) =>
             <CompoundButton
                 onClick={() => setState({isVIP: false})}
                 appearance={!state.isVIP ? "primary" : "outline"}
-                icon={<PeopleTeamRegular color={state.isVIP ? fontColor : lightColor} />}
+                icon={<PeopleTeamRegular color={state.isVIP ? fontColor : lightColor}/>}
                 secondaryContent={"< 100,000.00 Revenue"}
                 shape="rounded"
                 size={"small"}>
@@ -106,6 +107,6 @@ function VIPComponent(props: { params: IInputs, rerender: (outputs: IOutputs) =>
                     Normal
                 </Text>
             </CompoundButton>
-        </div>
+        </StackShim>
     );
 }

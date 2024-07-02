@@ -8,8 +8,8 @@
   <Import Project="$(PowerAppsTargetsPath)\Microsoft.PowerApps.VisualStudio.Pcf.props" Condition="Exists('$(PowerAppsTargetsPath)\Microsoft.PowerApps.VisualStudio.Pcf.props')" />
 
   <PropertyGroup>
-    <Name>case-counter-rollup</Name>
-    <ProjectGuid>bc159b70-8ab5-486e-a89e-a913f1088e02</ProjectGuid>
+    <Name>opty-sales-history-chart</Name>
+    <ProjectGuid>c58a765e-ee07-4139-b27c-b878b93525b3</ProjectGuid>
     <OutputPath>$(MSBuildThisFileDirectory)out\controls</OutputPath>
   </PropertyGroup>
 

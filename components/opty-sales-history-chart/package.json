@@ -1,5 +1,5 @@
 {
-  "name": "case-counter-rollup",
+  "name": "opty-sales-history-chart",
   "version": "1.0.0",
   "description": "Project containing your PowerApps Component Framework (PCF) control.",
   "scripts": {
@@ -16,6 +16,7 @@
     "react": "16.8.6",
     "@fluentui/react-components": "9.46.2",
     "@fluentui/react-charting": "^5.21.22",
+    "@fluentui/react-shared-contexts": "^9.19.0",
     "@fluentui/react-migration-v8-v9": "^9.6.18",
     "react-dom": "16.8.6"
   },
@@ -35,7 +36,6 @@
     "eslint-plugin-react": "^7.34.1",
     "pcf-scripts": "^1",
     "pcf-start": "^1",
-    "typescript": "^4.9.5",
-    "@fluentui/react-icons": "^2.0.245"
+    "typescript": "^4.9.5"
   }
 }

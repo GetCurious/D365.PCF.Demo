@@ -11,7 +11,6 @@
     <Name>opty-revenue-rollup</Name>
     <ProjectGuid>2c77a1f4-ee15-4ca5-9a3e-f10766cee25b</ProjectGuid>
     <OutputPath>$(MSBuildThisFileDirectory)out\controls</OutputPath>
-    <PcfBuildMode>production</PcfBuildMode>
   </PropertyGroup>
 
   <PropertyGroup>

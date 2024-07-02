@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest>
-  <control namespace="Pulz" constructor="VIPControl" version="1.0.10"
+  <control namespace="Pulz" constructor="VIPControl" version="1.0.0"
     display-name-key="VIP Control" description-key="VIP Control description"
     control-type="virtual">
     <!--external-service-usage
